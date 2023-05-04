@@ -1,13 +1,47 @@
 <html>
     <head>
-        <title>Rock</title>
+        <title>rps & rpsls</title>
         <script src="scripts.js"></script>
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
 
-    <!-- Your interface markup goes here -->
-    <!-- For interface examples, look in the `/examples/` directory in the root of your starter code repo. -->
+        <label for="game">select a game:</label>
+        <select name="game" id="game" onchange="game_select()">
+          <option value="rps">rock, paper, scissors</option>
+          <option value="rpsls">rock, paper, scissors, lizzard, spock</option>
+        </select>
+
+        <br></br>
+
+        <INPUT TYPE="Checkbox" Name="opponent" id ="opponent" onchange="opponent_select()" checked>play against an opponent?</INPUT>
+
+        <br></br>
+
+        <label for="player_choice">choose your move:</label>
+        <select name= "player_choice" id="player_choice">
+            <option value = "rock" id = "rock">rock</option> 
+            <option value = "paper" id = "paper">paper</option> 
+            <option value = "scissors" id = "scissors">scissors</option> 
+            <option value = "lizzard" id = "lizzard" option hidden>lizzard</option> 
+            <option value = "spock" id = "spock" option hidden>spock</option> 
+        </select>  
+
+        <br></br>
+
+        <label for="opp_choice" id="opp_label">choose opponent move:</label>
+        <select name= "opp_choice" id="opp_choice">
+            <option value = "rock" id = "rocko">rock</option> 
+            <option value = "paper" id = "papero">paper</option> 
+            <option value = "scissors" id = "scissorso">scissors</option> 
+            <option value = "lizzard" id = "lizzardo" option hidden>lizzard</option> 
+            <option value = "spock" id = "spocko" option hidden>spock</option> 
+        </select>  
+
+        <br></br>
+
+        <button type="button" onclick="play()">PLAY</button>
+        <button type="button" onclick="reset()">RESET</button>
 
     </body>
 </html>
