@@ -2,6 +2,7 @@
 // Create require function 
 // https://nodejs.org/docs/latest-v18.x/api/module.html#modulecreaterequirefilename
 import { createRequire } from 'node:module';
+import { rps, rpsls } from './lib/rpsls.js';
 const require = createRequire(import.meta.url);
 // The above two lines allow us to use ES methods and CJS methods for loading
 // dependencies.
@@ -73,38 +74,8 @@ const staticpath = args.stat || args.s || process.env.STATICPATH || path.join(__
 app.use('/', express.static(staticpath))
 // Create app listener
 const server = app.listen(port)
-// Create a log entry on start
-let startlog = new Date().toISOString() + ' HTTP server started on port ' + port + '\n'
-// Debug echo start log entry to STDOUT
-if (args.debug) {
-    console.info(startlog)
-} 
-// Log server start to file
-fs.appendFileSync(path.join(logpath, 'server.log'), startlog)
-// Exit gracefully and log
-process.on('SIGINT', () => {
-// Create a log entry on SIGINT
-    let stoppinglog =  new Date().toISOString() + ' SIGINT signal received: stopping HTTP server\n'
-//  Log SIGINT to file
-    fs.appendFileSync(path.join(logpath, 'server.log'), stoppinglog)
-// Debug echo SIGINT log entry to STDOUT
-    if (args.debug) {
-        console.info('\n' + stoppinglog)
-    }
-// Create a log entry on stop
-    server.close(() => {
-        let stoppedlog = new Date().toISOString() + ' HTTP server stopped\n'
-// Log server stop to file
-        fs.appendFileSync(path.join(logpath, 'server.log'), stoppedlog)
-// Debug echo stop log entry to STDOUT
-        if (args.debug) {
-            console.info('\n' + stoppedlog)
-        }    
-    })
-})
 
-// API endpoints
-
+// API Endpoints
 app.get('/app', (req, res) => {
     res.status(200).send('200 OK').end();
 });
@@ -116,6 +87,7 @@ app.get('/app/rps', (req, res) => {
 app.get('/app/rpsls', (req, res) => {
     res.status(200).send(JSON.stringify(rpsls(req.body.shot))).end();
 })
+
 app.get('/app/rps/play', (req, res) => {
     res.status(200).send(JSON.stringify(rps(req.query.shot))).end();
 })
@@ -144,6 +116,32 @@ app.all('*', (req, res) => {
     res.status(404).send('404 NOT FOUND').end();
 })
 
-app.listen(port, () => {
-    console.log(`the app is listening!!! on port ${port}`)
+// Create a log entry on start
+let startlog = new Date().toISOString() + ' HTTP server started on port ' + port + '\n'
+// Debug echo start log entry to STDOUT
+if (args.debug) {
+    console.info(startlog)
+} 
+// Log server start to file
+fs.appendFileSync(path.join(logpath, 'server.log'), startlog)
+// Exit gracefully and log
+process.on('SIGINT', () => {
+// Create a log entry on SIGINT
+    let stoppinglog =  new Date().toISOString() + ' SIGINT signal received: stopping HTTP server\n'
+//  Log SIGINT to file
+    fs.appendFileSync(path.join(logpath, 'server.log'), stoppinglog)
+// Debug echo SIGINT log entry to STDOUT
+    if (args.debug) {
+        console.info('\n' + stoppinglog)
+    }
+// Create a log entry on stop
+    server.close(() => {
+        let stoppedlog = new Date().toISOString() + ' HTTP server stopped\n'
+// Log server stop to file
+        fs.appendFileSync(path.join(logpath, 'server.log'), stoppedlog)
+// Debug echo stop log entry to STDOUT
+        if (args.debug) {
+            console.info('\n' + stoppedlog)
+        }    
+    })
 })
