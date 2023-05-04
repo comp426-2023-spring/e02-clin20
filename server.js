@@ -5,7 +5,7 @@ import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 // The above two lines allow us to use ES methods and CJS methods for loading
 // dependencies.
-// Load minimist for command line argument parsing
+// Load minimist for command line argument parsingds
 // https://www.npmjs.com/package/minimist
 const minimist = require('minimist')
 // Parse our command line arguments
@@ -101,4 +101,49 @@ process.on('SIGINT', () => {
             console.info('\n' + stoppedlog)
         }    
     })
+})
+
+// API endpoints
+
+app.get('/app', (req, res) => {
+    res.status(200).send('200 OK').end();
+});
+
+app.get('/app/rps', (req, res) => {
+    res.status(200).send(JSON.stringify(rps(req.body.shot))).end();
+})
+
+app.get('/app/rpsls', (req, res) => {
+    res.status(200).send(JSON.stringify(rpsls(req.body.shot))).end();
+})
+app.get('/app/rps/play', (req, res) => {
+    res.status(200).send(JSON.stringify(rps(req.query.shot))).end();
+})
+
+app.get('/app/rpsls/play', (req, res) => {
+    res.status(200).send(JSON.stringify(rpsls(req.query.shot))).end();
+})
+
+app.post('/app/rps/play', (req, res) => {
+    res.status(200).send(JSON.stringify(rps(req.body.shot))).end();
+})
+
+app.post('/app/rpsls/play', (req, res) => {
+    res.status(200).send(JSON.stringify(rpsls(req.body.shot))).end();
+})
+
+app.get('/app/rps/play/:shot', (req, res) => {
+    res.status(200).send(JSON.stringify(rps(req.params.shot))).end();
+})
+
+app.get('/app/rpsls/play/:shot', (req, res) => {
+    res.status(200).send(JSON.stringify(rpsls(req.params.shot))).end();
+})
+
+app.all('*', (req, res) => {
+    res.status(404).send('404 NOT FOUND').end();
+})
+
+app.listen(port, () => {
+    console.log(`the app is listening!!! on port ${port}`)
 })
