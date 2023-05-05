@@ -1,5 +1,7 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
         <title>rps & rpsls</title>
         <script src="scripts.js"></script>
         <link rel="stylesheet" href="styles.css">
@@ -8,43 +10,71 @@
 
         <label for="game">select a game:</label>
         <select name="game" id="game" onchange="game_select()">
-          <option value="rps">rock, paper, scissors</option>
-          <option value="rpsls">rock, paper, scissors, lizzard, spock</option>
+            <option disabled selected value>select an option</option>
+            <option value="rps">rock, paper, scissors</option>
+            <option value="rpsls">rock, paper, scissors, lizard, spock</option>
         </select>
 
-        <br></br>
+        <br> 
+        <br> 
 
-        <INPUT TYPE="Checkbox" Name="opponent" id ="opponent" onchange="opponent_select()" checked>play against an opponent?</INPUT>
+        <label>play against an opponent?</label>
+        <input TYPE="Checkbox" Name="opponent" id ="opponent" checked onchange="opponent_select()">
 
-        <br></br>
+        <br>
+        <br> 
 
         <label for="player_choice">choose your move:</label>
         <select name= "player_choice" id="player_choice">
+            <option disabled selected value>select an option</option>
             <option value = "rock" id = "rock">rock</option> 
             <option value = "paper" id = "paper">paper</option> 
             <option value = "scissors" id = "scissors">scissors</option> 
-            <option value = "lizzard" id = "lizzard" option hidden>lizzard</option> 
-            <option value = "spock" id = "spock" option hidden>spock</option> 
+            <option value = "lizard" id = "lizard" hidden>lizard</option> 
+            <option value = "spock" id = "spock" hidden>spock</option> 
         </select>  
 
-        <br></br>
+        <br> 
+        <br> 
 
         <label for="opp_choice" id="opp_label">choose opponent move:</label>
         <select name= "opp_choice" id="opp_choice">
+            <option disabled selected value>select an option</option>
             <option value = "rock" id = "rocko">rock</option> 
             <option value = "paper" id = "papero">paper</option> 
             <option value = "scissors" id = "scissorso">scissors</option> 
-            <option value = "lizzard" id = "lizzardo" option hidden>lizzard</option> 
-            <option value = "spock" id = "spocko" option hidden>spock</option> 
+            <option value = "lizard" id = "lizardo" hidden>lizard</option> 
+            <option value = "spock" id = "spocko" hidden>spock</option> 
         </select>  
 
-        <br></br>
+        <br>
+        <br>
 
         <button type="button" onclick="play()">PLAY</button>
         <button type="button" onclick="reset()">RESET</button>
+        <button type="button" onclick="toggle_rules()">RULES</button>
 
-        <br></br>
+        <br>
 
         <p><span id="result"></span></p>
+
+        <p hidden id= "rules">
+            rules for rock paper scissors: <br>
+            &emsp;- scissors CUTS paper <br>
+            &emsp;- paper COVERS rock <br>
+            &emsp;- rock CRUSHES scissors <br>
+            <br>
+            rules for the lizard-spock expansion of rock paper scissors: <br>
+            &emsp;- scissors CUTS paper <br>
+            &emsp;- paper COVERS rock <br>
+            &emsp;- rock SMOOSHES lizard <br>
+            &emsp;- lizard POISONS spock <br>
+            &emsp;- spock SMASHES scissors <br>
+            &emsp;- scissors DECAPITATES lizard <br>
+            &emsp;- lizard EATS paper <br>
+            &emsp;- paper DISPROVES spock <br>
+            &emsp;- spock VAPORIZES rock <br>
+            &emsp;- rock CRUSHES scissors <br>
+        </p>
     </body>
 </html>

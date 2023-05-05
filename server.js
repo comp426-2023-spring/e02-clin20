@@ -2,7 +2,7 @@
 // Create require function 
 // https://nodejs.org/docs/latest-v18.x/api/module.html#modulecreaterequirefilename
 import { createRequire } from 'node:module';
-import { rps, rpsls } from './lib/rpsls.js';
+import { rps, rpsls, rpsls_opp, rps_opp } from './lib/rpsls.js';
 const require = createRequire(import.meta.url);
 // The above two lines allow us to use ES methods and CJS methods for loading
 // dependencies.
@@ -89,9 +89,18 @@ app.get('/app/rpsls', (req, res) => {
     res.status(200).send(JSON.stringify(rpsls(req.query.shot))).end();
 })
 
+// rps if no opponent
 app.get('/app/rps/play/:shot', (req, res) => {
     var shot = req.params.shot;
     var result = rps(shot)
+    res.status(200).send(JSON.stringify(result)).end();
+});
+
+// rps if opponent given
+app.get('/app/rps/play/:shot/:opp', (req, res) => {
+    var shot = req.params.shot;
+    var opp = req.params.opp;
+    var result = rps_opp(shot, opp)
     res.status(200).send(JSON.stringify(result)).end();
 });
 
@@ -111,8 +120,19 @@ app.get('/app/rps/play/:shot', (req, res) => {
     res.status(200).send(JSON.stringify(rps(req.params.shot))).end();
 })
 
+// rpsls if no given opponent
 app.get('/app/rpsls/play/:shot', (req, res) => {
-    res.status(200).send(JSON.stringify(rpsls(req.params.shot))).end();
+    var shot = req.params.shot;
+    var result = rpsls(shot)
+    res.status(200).send(JSON.stringify(result)).end();
+})
+
+// rpsls if opponent given
+app.get('/app/rpsls/playopp/:shot/:opp', (req, res) => {
+    var shot = req.params.shot;
+    var opp = req.params.opp;
+    var result = rpsls_opp(shot, opp);
+    res.status(200).send(JSON.stringify(result)).end();
 })
 
 app.all('*', (req, res) => {
