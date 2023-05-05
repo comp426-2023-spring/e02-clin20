@@ -21,8 +21,9 @@ async function play() {
                     return response.json();
                })
                     .then(function(result) {
-                        console.log("result: " + result);
-                        document.getElementById("result").innerHTML = "result: " + JSON.stringify(result);
+                        document.getElementById("you_chose").innerHTML = "your move: " + result.player;
+                        document.getElementById("opp_chose").innerHTML = "your opponent's move: " + result.opponent;
+                        document.getElementById("result").innerHTML = "this game's result: " + result.result;
                     });
 
         } else {
@@ -33,8 +34,9 @@ async function play() {
                     return response.json();
                })
                     .then(function(result) {
-                        console.log("result: " + result);
-                        document.getElementById("result").innerHTML = "result: " + JSON.stringify(result);
+                        document.getElementById("you_chose").innerHTML = "your move: " + result.player;
+                        document.getElementById("opp_chose").innerHTML = "random move: " + result.opponent;
+                        document.getElementById("result").innerHTML = "this game's result: " + result.result;
                     });
         }
     } else {
@@ -48,8 +50,9 @@ async function play() {
                     return response.json();
                 })
                     .then(function(result) {
-                        console.log("result: " + result);
-                        document.getElementById("result").innerHTML = "result: " + JSON.stringify(result);
+                        document.getElementById("you_chose").innerHTML = "your move: " + result.player;
+                        document.getElementById("opp_chose").innerHTML = "your opponent's move: " + result.opponent;
+                        document.getElementById("result").innerHTML = "this game's result: " + result.result;
                     });
 
         } else {
@@ -60,8 +63,9 @@ async function play() {
                     return response.json();
                 })
                     .then(function(result) {
-                        console.log("result: " + result);
-                        document.getElementById("result").innerHTML = "result: " + JSON.stringify(result);
+                        document.getElementById("you_chose").innerHTML = "your move: " + result.player;
+                        document.getElementById("opp_chose").innerHTML = "random move: " + result.opponent;
+                        document.getElementById("result").innerHTML = "this game's result: " + result.result;
                     });
         }
     }
