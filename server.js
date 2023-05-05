@@ -44,6 +44,7 @@ import express from 'express'
 // https://flaviocopes.com/fix-dirname-not-defined-es-module-scope/
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { writeHeapSnapshot } from 'node:v8';
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 // Load dependencies for logging
@@ -81,16 +82,18 @@ app.get('/app', (req, res) => {
 });
 
 app.get('/app/rps', (req, res) => {
-    res.status(200).send(JSON.stringify(rps(req.body.shot))).end();
+    res.status(200).send(JSON.stringify(rps(req.query.shot))).end();
 })
 
 app.get('/app/rpsls', (req, res) => {
-    res.status(200).send(JSON.stringify(rpsls(req.body.shot))).end();
+    res.status(200).send(JSON.stringify(rpsls(req.query.shot))).end();
 })
 
-app.get('/app/rps/play', (req, res) => {
-    res.status(200).send(JSON.stringify(rps(req.query.shot))).end();
-})
+app.get('/app/rps/play/:shot', (req, res) => {
+    var shot = req.params.shot;
+    var result = rps(shot)
+    res.status(200).send(JSON.stringify(result)).end();
+});
 
 app.get('/app/rpsls/play', (req, res) => {
     res.status(200).send(JSON.stringify(rpsls(req.query.shot))).end();
