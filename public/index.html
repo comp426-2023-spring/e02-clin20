@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>rps & rpsls</title>
+        <title>rps and rpsls</title>
         <script src="scripts.js"></script>
         <link rel="stylesheet" href="styles.css">
     </head>
@@ -15,37 +15,37 @@
             <option value="rpsls">rock, paper, scissors, lizard, spock</option>
         </select>
 
-        <br> 
-        <br> 
+        <br>
+        <br>
 
         <label>play against an opponent?</label>
-        <input TYPE="Checkbox" Name="opponent" id ="opponent" checked onchange="opponent_select()">
+        <input type="Checkbox" name="opponent" id ="opponent" checked=true onchange="opponent_select()">
 
         <br>
-        <br> 
+        <br>
 
         <label for="player_choice">choose your move:</label>
-        <select name= "player_choice" id="player_choice">
+        <select name="player_choice" id="player_choice">
             <option disabled selected value>select an option</option>
-            <option value = "rock" id = "rock">rock</option> 
-            <option value = "paper" id = "paper">paper</option> 
-            <option value = "scissors" id = "scissors">scissors</option> 
-            <option value = "lizard" id = "lizard" hidden>lizard</option> 
-            <option value = "spock" id = "spock" hidden>spock</option> 
-        </select>  
+            <option value="rock" id="rock">rock</option>
+            <option value="paper" id="paper">paper</option>
+            <option value="scissors" id="scissors">scissors</option>
+            <option value="lizard" id="lizard" hidden>lizard</option>
+            <option value="spock" id="spock" hidden>spock</option>
+        </select>
 
-        <br> 
-        <br> 
+        <br>
+        <br>
 
         <label for="opp_choice" id="opp_label">choose opponent move:</label>
-        <select name= "opp_choice" id="opp_choice">
+        <select name="opp_choice" id="opp_choice">
             <option disabled selected value>select an option</option>
-            <option value = "rock" id = "rocko">rock</option> 
-            <option value = "paper" id = "papero">paper</option> 
-            <option value = "scissors" id = "scissorso">scissors</option> 
-            <option value = "lizard" id = "lizardo" hidden>lizard</option> 
-            <option value = "spock" id = "spocko" hidden>spock</option> 
-        </select>  
+            <option value= "rock" id="rocko">rock</option>
+            <option value="paper" id="papero">paper</option>
+            <option value="scissors" id="scissorso">scissors</option>
+            <option value="lizard" id="lizardo" hidden>lizard</option>
+            <option value="spock" id="spocko" hidden>spock</option>
+        </select>
 
         <br>
         <br>
@@ -64,7 +64,7 @@
         </p>
 
 
-        <p hidden id= "rules">
+        <p hidden id="rules">
             rules for rock paper scissors: <br>
             &emsp;- scissors CUTS paper <br>
             &emsp;- paper COVERS rock <br>
